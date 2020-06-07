@@ -1,12 +1,11 @@
 import pymongo
 import os
 
-# Retrieve MongoDB Username and Pass from .env file
-db_name = os.getenv("DB_USERNAME")
-db_pass = os.getenv("DB_PASSWORD")
+# Retrieve MongoDB Connection string from .env file
+mongo_connection = os.getenv("MONGO_CONNECTION")
 
 # Connect to MongoDB Atlas
-client = pymongo.MongoClient("mongodb+srv://:@cluster0-r9qqm.gcp.mongodb.net/test?retryWrites=true&w=majority")
+client = pymongo.MongoClient(mongo_connection)
 
 # Set Variables for Database and Collection
 db = client['Portfolio']
@@ -16,7 +15,7 @@ def main():
 
     while(1):
     # CRUD Option Selections
-        selection = raw_input('\nSelect 1 to insert, 2 to update, 3 to read, 4 to delete\n')
+        selection = input('\nSelect 1 to insert, 2 to update, 3 to read, 4 to delete\n')
     
         if selection == '1':
             insert()
